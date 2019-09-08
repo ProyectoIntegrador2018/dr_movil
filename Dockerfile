@@ -1,4 +1,4 @@
-FROM ruby:2.3.7
+FROM ruby:2.6.4
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
         && apt-get install -y nodejs

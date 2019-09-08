@@ -199,32 +199,8 @@ This will display the logs from the rails app, as well as give you access to sto
 
 ### Running specs
 
-To run specs, you can do:
-
-```
-$ plis run test rspec
-```
-
-Or for a specific file:
-
-```
-$ plis run test rspec spec/models/user_spec.rb
-```
+No specs yet.
 
 ### Checking code for potential issues
 
-To run specs, you can do:
-
-```
-$ plis run web reek
-```
-
-```
-$ plis run web rubocop
-```
-
-```
-$ plis run web scss_lint
-```
-
-Or any other linter you have.
+TBD
