@@ -1,0 +1,15 @@
+.git
+.gitignore
+README.mb
+
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+log/*
+tmp/*
+.rake_tasks*
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore
