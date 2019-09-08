@@ -1,12 +1,13 @@
-# Nombre del proyecto
+# Dr-movil
 
-Dr Movil
+This proyect's objective is to help people better keep track of the different diseases
+they may have. We mainly take into account any kind of hearth disease and diabetes.
 
 ## Table of contents
 
 * [Client Details](#client-details)
 * [Environment URLS](#environment-urls)
-* [Da Team](#team)
+* [Team](#team)
 * [Management resources](#management-resources)
 * [Setup the project](#setup-the-project)
 * [Running the stack for development](#running-the-stack-for-development)
@@ -19,9 +20,9 @@ Dr Movil
 
 ### Client Details
 
-| Name                  | Email                   | Role |
-| --------------------- | ----------------------- | ---- |
-| Dr.José Luis Gonzáles | med.gonzalezg@gmail.com | CEO  |
+| Name                  | Email                   | Role          |
+| --------------------- | ----------------------- | ------------- |
+| Dr.José Luis Gonzáles | med.gonzalezg@gmail.com | Product Owner |
 
 
 ### Environment URLS
@@ -29,7 +30,7 @@ Dr Movil
 * **Production** - [TBD](TBD)
 * **Development** - [TBD](TBD)
 
-### Da team
+### Team
 
 | Name                           | Email                    | Role                                       |
 | ------------------------------ | ------------------------ | ------------------------------------------ |
@@ -149,38 +150,29 @@ to stop the database
 
 ### Restoring the database
 
-You probably won't be working with a blank database, so once you are able to run the proyect you can restore the database, to do it, first stop all services:
+You probably won't be working with a blank database, so once you are able to run the proyect you can restore the database, to do
+so you need to start the proyect:
 
 ```
-% plis stop
+% docker-compose up -d --build app
 ```
 
-Then just lift up the `db` service:
+Go into the bash:
 
 ```
-% plis start db
+% docker-compose exec app bash
 ```
 
-The next step is to login to the database container:
+Reset the db:
 
 ```
-% docker exec -ti crowdfront_db_1 bash
+% rake db:migrate:reset
 ```
 
-This will open up a bash session in to the database container.
-
-Up to this point we just need to download a database dump and copy under `crowdfront/backups/`, this directory is mounted on the container, so you will be able to restore it with:
+Then seed the database to put all the pre-coded info back in:
 
 ```
-root@a3f695b39869:/# bin/restoredb crowdfront_dev db/backups/<databaseDump>
-```
-
-If you want to see how this script works, you can find it under `bin/restoredb`
-
-Once the script finishes its execution you can just exit the session from the container and lift the other services:
-
-```
-% plis start
+% rake db:seed
 ```
 
 ### Debugging
@@ -190,12 +182,10 @@ We know you love to use `debugger`, and who doesn't, and with Docker is a bit tr
 Just run this line at the terminal and you can start debugging like a pro:
 
 ```
-% plis attach web
+% docker logs dr_movil_app_1
 ```
 
-This will display the logs from the rails app, as well as give you access to stop the execution on the debugging point as you would expect.
-
-**Take note that if you kill this process you will kill the web service, and you will probably need to lift it up again.**
+This will display the logs from the rails app.
 
 ### Running specs
 
