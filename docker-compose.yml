@@ -5,11 +5,13 @@ volumes:
     external: false
 
 services:
-  db:
+  postgres:
     image: "postgres:11.4"
     env_file: .env
     volumes:
       - db-data:/var/lib/postgresql/db-data
+    environment:
+      POSTGRES_PASSWORD: "password"
 
   app:
     build: .
@@ -19,4 +21,6 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
+    environment:
+      DATABASE_URL: "postgres://postgres:password@postgres:5432/dr_movil_development"
