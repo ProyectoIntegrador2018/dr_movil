@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pacient: one
+  medical_var: one
+  freq: 
+
+two:
+  pacient: two
+  medical_var: two
+  freq: 
