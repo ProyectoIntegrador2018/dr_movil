@@ -1,5 +1,7 @@
 # Dr-movil
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/6413fb2d9ed1a3d8257e/maintainability)](https://codeclimate.com/github/ProyectoIntegrador2018/dr_movil/maintainability)
+
 This proyect's objective is to help people better keep track of the different diseases
 they may have. We mainly take into account any kind of hearth disease and diabetes.
 
