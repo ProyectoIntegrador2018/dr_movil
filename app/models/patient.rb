@@ -1,4 +1,5 @@
 # Patients have information relevant for the Doctors
+
 # frozen_string_literal: true
 
 class Patient < ApplicationRecord

@@ -1,4 +1,5 @@
 # Doctors visualize Patients and its information
+
 # frozen_string_literal: true
 
 class Doctor < ApplicationRecord

@@ -1,8 +1,11 @@
-# Patient Controller controlls or actions regarding Patient User Types
+# Patient Controller controlls or
+# actions regarding Patient User Types
 
 class PatientsController < ApplicationController
 
+
   def index; end
+
 
   def new
     @patient = Patient.new
@@ -19,10 +22,10 @@ class PatientsController < ApplicationController
     end
   end
 
-  def show 
+  def show
     @patient = Patient.find(params[:id])
   end
-  
+
   def destroy
     @patient = Patient.find(params[:id])
     @patient.destroy
