@@ -11,6 +11,5 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     :authenticate_patient! || :authenticate_doctor!
-    @current_user = current_doctor.nil? current_user : current_doctor
  end
 end
