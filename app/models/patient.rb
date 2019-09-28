@@ -1,3 +1,6 @@
+# Patients have information relevant for the Doctors
+# frozen_string_literal: true
+
 class Patient < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
