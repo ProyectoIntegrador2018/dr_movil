@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_patient!, :except => [:show, :index]
+  before_action :authenticate_patient!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
