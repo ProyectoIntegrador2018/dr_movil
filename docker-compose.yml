@@ -18,26 +18,8 @@ services:
       LC_ALL: C.UTF-8
       POSTGRES_PASSWORD: P4Ssw0rD!
 
-  test: &app
-    image: integrador/dr_movil:development
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/code
-      - gems:/usr/local/bundle
-    working_dir: /code
-    tty: false
-    stdin_open: true
-    depends_on:
-      - db
-    command: rspec
-    environment: &app_environment
-      LC_ALL: C.UTF-8
-      RAILS_LOG_TO_STDOUT: "true"
-
   app:
-    <<: *app
+    image: integrador/dr_movil:development
     command: rails server -p 3000 -b 0.0.0.0
     ports:
       - 3000:3000
@@ -51,7 +33,8 @@ services:
     tty: false
     stdin_open: true
     environment:
-      <<: *app_environment
+      LC_ALL: C.UTF-8
+      RAILS_LOG_TO_STDOUT: "true"
       DATABASE_URL: "postgres://postgres:P4Ssw0rD!@db:5432/dr_movil_dev"
     depends_on:
       - db
