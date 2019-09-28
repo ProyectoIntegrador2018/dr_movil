@@ -1,7 +1,7 @@
 class CreateLogs < ActiveRecord::Migration[5.2]
   def change
     create_table :logs do |t|
-      t.references :patient_medical, foreign_key: true
+      t.references :patient_medicals, foreign_key: true
       t.float :value
 
       t.timestamps

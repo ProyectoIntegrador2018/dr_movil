@@ -1,23 +1,12 @@
 FROM ruby:2.6.4
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-        && apt-get install -y nodejs
+RUN mkdir -p /code
+WORKDIR /code
 
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends \
-  postgresql-client \
-  nodejs \
-  && apt-get -q clean \
-  && rm -rf /var/lib/apt/lists
+ENV BUNDLER_VERSION 2.0.2
+RUN gem install bundler -v 2.0.2
 
-#Preinstall gems with native extensions
-RUN gem install nokogiri -v "1.10.3"
+# Copy just the Gemfile & Gemfile.lock, to be able to install the required gems:
+ADD Gemfile* /code/
 
-WORKDIR /usr/src/app
-COPY Gemfile* ./
 RUN bundle install
-COPY . .
-
-EXPOSE 80
-
-CMD script/start
