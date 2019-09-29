@@ -1,6 +1,7 @@
 # Doctor Controller controlls or actions regarding Doctor User Types
 
 class DoctorsController < ApplicationController
+
   def index; end
 
   def new
@@ -20,6 +21,8 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = Doctor.find(params[:id])
+    @patients = @doctor.patients
+    @viewable_patients = @doctor.viewable_patients
   end
 
   def destroy

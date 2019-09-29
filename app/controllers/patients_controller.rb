@@ -1,5 +1,8 @@
 
 class PatientsController < ApplicationController
+  before_action :authenticate_doctor!, only: [:new, :create]
+  before_action :check_dotor
+
   def index
     @patients = Patient.all
   end
@@ -34,5 +37,12 @@ class PatientsController < ApplicationController
 
   def patient_params
     params.require(:patient).permit(:first_name, :last_name, :birth_date, :sex, :email, :password, :password_confirmation)
+  end
+
+  def check_dotor
+    @patient = Patient.find(params[:id])
+    unless (current_patient.nil? && current_doctor.has_patient(@patient) || @patient.doctor == current_doctor) || current_patient == @patient
+      redirect_to root_path
+    end
   end
 end
