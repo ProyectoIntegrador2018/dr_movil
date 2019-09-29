@@ -4,6 +4,10 @@ if [[ -a /tmp/puma.pid ]]; then
   rm /tmp/puma.pid
 fi
 
+if [[ -a /tmp/pids/server.pid ]]; then
+  rm /tmp/pids/server.pid
+fi
+
 if [[ $RAILS_ENV == "production" ]]; then
   rake assets:precompile
   mkdir -p /usr/share/nginx/html

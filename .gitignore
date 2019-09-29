@@ -15,6 +15,7 @@
 
 #ignore docker file
 .env
+.env.prod
 
 # Ignore uploaded files in development
 /storage/*
