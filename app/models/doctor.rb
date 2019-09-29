@@ -15,4 +15,8 @@ class Doctor < ApplicationRecord
   def viewable_patients
     ViewablePatient.where(doctor: self).map{|vp| vp.patient }
   end
+
+  def has_patient patient
+    return viewable_patients.include?patient
+  end
 end

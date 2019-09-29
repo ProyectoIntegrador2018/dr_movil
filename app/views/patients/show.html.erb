@@ -1,0 +1,11 @@
+<h2>Paciente</h2>
+<h3><%="#{@patient.first_name.titleize} #{@patient.last_name.titleize}"%></h3>
+
+<div>
+  <label>Fecha de Nacimiento</label>
+  <p><%=@patient.birth_date%></p>
+  <label>Edad</label>
+  <p><%=(Date.today.year - @patient.birth_date.year)%></p>
+  <label>Sexo</label>
+  <p><%=@patient.sex.titleize%></p>
+</div>
