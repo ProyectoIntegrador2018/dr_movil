@@ -1,23 +1,20 @@
-# Patient Controller controlls or
-# actions regarding Patient User Types
 
 class PatientsController < ApplicationController
-
-
-  def index; end
-
+  def index
+    @patients = Patient.all
+  end
 
   def new
-    @patient = Patient.new
+    @patient = Patient.new()
   end
 
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
-      flash[:success] = 'Paciente registrado exitosamente'
+      flash[:success] = "Paciente registrado exitosamente"
       redirect_to patients_path
     else
-      flash.now[:error] = 'Hubo un error con el registro, verifica los campos del formulario'
+      flash.now[:error] = "Hubo un error con el registro, verifica los campos del formulario"
       render :new
     end
   end
