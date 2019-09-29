@@ -2,10 +2,11 @@
 # actions regarding Patient User Types
 
 class PatientsController < ApplicationController
+  before_action :authenticate_doctor!, only: [:new, :create]
 
-
-  def index; end
-
+  def index
+    @patients = Patient.all
+  end
 
   def new
     @patient = Patient.new
