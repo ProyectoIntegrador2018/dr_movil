@@ -189,10 +189,6 @@ Just run this line at the terminal and you can start debugging like a pro:
 
 This will display the logs from the rails app.
 
-### Running specs
-
-No specs yet.
-
 ### Checking code for potential issues
 
 TBD

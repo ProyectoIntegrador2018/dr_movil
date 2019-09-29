@@ -1,3 +1,4 @@
+
 class PatientsController < ApplicationController
   def index
     @patients = Patient.all
@@ -18,14 +19,14 @@ class PatientsController < ApplicationController
     end
   end
 
-  def show 
+  def show
     @patient = Patient.find(params[:id])
   end
-  
+
   def destroy
     @patient = Patient.find(params[:id])
     @patient.destroy
-    flash[:destroy] = "Paciente eliminado exitosamente"
+    flash[:destroy] = 'Paciente eliminado exitosamente'
     redirect_to patients_path
   end
 
