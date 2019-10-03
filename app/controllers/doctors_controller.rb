@@ -1,7 +1,7 @@
 # Doctor Controller controlls or actions regarding Doctor User Types
 
 class DoctorsController < ApplicationController
-  before_action :validate_permission, only: [:edit, :update, :destroy, :show]
+  before_action :validate_permission, only: %i[edit update destroy show]
 
   def index; end
 
@@ -55,9 +55,6 @@ class DoctorsController < ApplicationController
   end
 
   def validate_permission
-    if current_doctor.id.to_s != params[:id] 
-      flash[:error] = 'No cuentas con los permisos suficientes'
-      redirect_to root_path
-    end
+    redirect_to root_path if current_doctor.id.to_s != params[:id]
   end
 end
