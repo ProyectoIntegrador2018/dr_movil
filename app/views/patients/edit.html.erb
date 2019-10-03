@@ -1,0 +1,34 @@
+<h2>Editar Información</h2>
+
+<%= form_for(@patient) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @patient %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birth_date %><br />
+    <%= f.date_field :birth_date, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.select(:sex, [["Masculino", "male"], ["Femenino", "female"]], {:prompt => 'Selecciona'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Registrar" %>
+  </div>
+<% end %>
