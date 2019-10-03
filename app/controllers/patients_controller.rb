@@ -21,7 +21,8 @@ class PatientsController < ApplicationController
       flash[:success] = 'Paciente registrado exitosamente'
       redirect_to patients_path
     else
-      flash.now[:error] = 'Hubo un error con el registro, verifica los campos del formulario'
+      flash.now[:error] = 'Hubo un error con el registro,
+                           verifica los campos del formulario'
       render :new
     end
   end
@@ -32,7 +33,8 @@ class PatientsController < ApplicationController
       flash[:success] = 'Información actualizada exitosamente'
       redirect_to @patient
     else
-      flash.now[:error] = 'Hubo un error con el registro, verifica los campos del formulario'
+      flash.now[:error] = 'Hubo un error con el registro,
+                           verifica los campos del formulario'
       render :new
     end
   end
