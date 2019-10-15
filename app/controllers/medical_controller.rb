@@ -1,6 +1,8 @@
 class MedicalController < ApplicationController
   before_action :check_doctor
-  def show
+  def index
+    @medicals = PatientMedical.where(patient: params[:patient])
+    @patient = Patient.find(params[:patient])
   end
 
   def check_doctor

@@ -1,2 +1,12 @@
-<h1>Medical#index</h1>
-<p>Find me in app/views/medical/index.html.erb</p>
+<h1><%="#{@patient.first_name} #{@patient.last_name}"%></h1>
+<p>Variables medicas de paciente</p>
+
+<% if @medicals.empty? %>
+  <h3>Aún no tiene pacientes</h3>
+<% else %>
+  <% @medicals.each do |m| %>
+    <div>
+      <p><%="frecuencia:  #{m.freq} "%> <%=" nombre:  #{m.medical_variable.name}"%></p>
+    </div>
+  <% end %>
+<% end %>
