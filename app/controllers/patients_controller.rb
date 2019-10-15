@@ -67,8 +67,6 @@ class PatientsController < ApplicationController
   end
 
   def new_patient
-    unless current_patient.nil? && current_doctor != nil
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_patient.nil? && !current_doctor.nil?
   end
 end
