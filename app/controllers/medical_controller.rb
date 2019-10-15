@@ -1,3 +1,5 @@
+# Patient Medical Controller controlls or actions regarding Patient Medical records
+
 class MedicalController < ApplicationController
   before_action :check_doctor
   def index
