@@ -1,12 +1,26 @@
-<h1><%="#{@patient.first_name} #{@patient.last_name}"%></h1>
-<p>Variables medicas de paciente</p>
-
+<div class="flex-column-container">
+  <div class="medical-title">
+  <p>Variables medicas de paciente</p>
+  <h3><%="#{@patient.first_name} #{@patient.last_name}"%></h3>
+  </div>
+  <div class="medical-center-container">
+  <div class="medical-container">
 <% if @medicals.empty? %>
   <h3>Aún no tiene pacientes</h3>
 <% else %>
+  <table id="medical-var">
+    <tr class="medical-table-title">
+    <th>nombre</th>
+    <th>frecuencia</th>
+    </tr>
   <% @medicals.each do |m| %>
-    <div>
-      <p><%="frecuencia:  #{m.freq} "%> <%=" nombre:  #{m.medical_variable.name}"%></p>
-    </div>
+  <tr>
+    <td class="medical-row"><%=" #{m.medical_variable.name}"%></td>
+    <td class="medical-row"><%="#{m.freq}"%></td>
+  </tr>
   <% end %>
+  </table>
 <% end %>
+</div>
+</div>
+</div>
