@@ -1,1 +1,33 @@
-<h2>Doctors Index</h2>
+<h2>Pacientes</h2>
+
+<div>
+  <h2>Directos:</h2>
+  <div>
+    <% if @patients.empty? %>
+      <h3>Aún no tiene pacientes</h3>
+    <% else %>
+      <% @patients.each do |p| %>
+        <div>
+          <p><%="#{p.first_name.titleize} #{p.last_name.titleize}"%></p>
+        </div>
+      <% end %>
+    <% end %>
+    <%= link_to "Añadir Paciente", new_patient_registration_path %>
+  </div>
+</div>
+
+<div>
+  <h2>Adicionales:</h2>
+  <div>
+     <% if @viewable_patients.empty? %>
+      <h3>Aún no tiene pacientes de otros Doctores</h3>
+    <% else %>
+      <% @viewable_patients.each do |p| %>
+        <div>
+          <p>Paciente: <%="#{p.first_name.titleize} #{p.last_name.titleize}"%></p>
+          <p>Doctor: <%="#{p.doctor.first_name.titleize} #{p.doctor.last_name.titleize}"%></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

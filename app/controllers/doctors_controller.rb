@@ -3,7 +3,11 @@
 class DoctorsController < ApplicationController
   before_action :validate_permission, only: %i[edit update destroy show]
 
-  def index; end
+  def index
+    @doctor = current_doctor
+    @patients = @doctor.patients
+    @viewable_patients = @doctor.viewable_patients
+  end
 
   def new
     @doctor = Doctor.new
@@ -37,8 +41,6 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = current_doctor
-    @patients = @doctor.patients
-    @viewable_patients = @doctor.viewable_patients
   end
 
   def destroy

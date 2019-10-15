@@ -41,6 +41,8 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <%= f.hidden_field :doctor_id, value: current_doctor.id %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
