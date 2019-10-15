@@ -54,7 +54,8 @@ class PatientsController < ApplicationController
 
   def patient_params
     params.require(:patient).permit(:first_name, :last_name, :birth_date,
-       :sex, :email, :doctor_id, :password, :password_confirmation)
+                                    :sex, :email, :doctor_id, :password,
+                                    :password_confirmation)
   end
 
   def check_doctor
