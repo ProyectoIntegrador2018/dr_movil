@@ -1,0 +1,43 @@
+.medical-container {
+  margin-top: 5rem;
+  padding-top: 1rem;
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+}
+.medical-center-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.medical-title{
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  padding-left: 10%;
+}
+
+.medical-vars-table{
+  display: flex;
+  width: inherit;
+  flex-direction: row;
+}
+.medical-table{
+  display: flex;
+  flex-direction: column;
+}
+#medical-var td, #medical-var th {
+  padding: 8px;
+}
+#medical-var tr:nth-child(even){background-color: #f2f2f2;}
+
+#medical-var tr:hover {background-color: #ddd;}
+
+#medical-var th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5693FF;
+  color: white;
+}

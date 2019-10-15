@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_161019) do
+ActiveRecord::Schema.define(version: 2019_10_15_025119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2019_09_29_161019) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.bigint "patient_medicals_id"
     t.float "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["patient_medicals_id"], name: "index_logs_on_patient_medicals_id"
+    t.bigint "patient_medical_id"
+    t.index ["patient_medical_id"], name: "index_logs_on_patient_medical_id"
   end
 
   create_table "medical_variables", force: :cascade do |t|
@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 2019_09_29_161019) do
 
   create_table "patient_medicals", force: :cascade do |t|
     t.bigint "patient_id"
-    t.bigint "medical_variables_id"
     t.integer "freq"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["medical_variables_id"], name: "index_patient_medicals_on_medical_variables_id"
+    t.bigint "medical_variable_id"
+    t.index ["medical_variable_id"], name: "index_patient_medicals_on_medical_variable_id"
     t.index ["patient_id"], name: "index_patient_medicals_on_patient_id"
   end
 
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_09_29_161019) do
     t.index ["patient_id"], name: "index_viewable_patients_on_patient_id"
   end
 
-  add_foreign_key "logs", "patient_medicals", column: "patient_medicals_id"
-  add_foreign_key "patient_medicals", "medical_variables", column: "medical_variables_id"
+  add_foreign_key "logs", "patient_medicals"
+  add_foreign_key "patient_medicals", "medical_variables"
   add_foreign_key "patient_medicals", "patients"
   add_foreign_key "patients", "doctors"
   add_foreign_key "viewable_patients", "doctors"
