@@ -20,7 +20,6 @@
     <% elsif doctor_signed_in? %>
       <%= render "shared/doctors_menu" %>
     <% else %>
-      <%= link_to "Sign up Pacientes", new_patient_registration_path, :class => 'navbar-link'  %> |
       <%= link_to "Iniciar Sesión Pacientes", new_patient_session_path, :class => 'navbar-link'  %>
       <br>
       <%= link_to "Sign up Doctores", new_doctor_registration_path, :class => 'navbar-link'  %> |

@@ -1,7 +1,8 @@
 
 class PatientsController < ApplicationController
   before_action :authenticate_doctor!, only: [:new, :create]
-  before_action :check_doctor, except: %i[index]
+  before_action :new_patient, only: [:new, :create]
+  before_action :check_doctor, except: %i[index new create]
 
   def index
     @patients = Patient.all
@@ -19,7 +20,7 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     if @patient.save
       flash[:success] = 'Paciente registrado exitosamente'
-      redirect_to patients_path
+      redirect_to doctors_path
     else
       flash.now[:error] = 'Hubo un error con el registro,
                            verifica los campos del formulario'
@@ -63,5 +64,9 @@ class PatientsController < ApplicationController
     unless (current_patient.nil? && current_doctor.has_patient(@patient) || @patient.doctor == current_doctor) || current_patient == @patient
       redirect_to root_path
     end
+  end
+
+  def new_patient
+    redirect_to root_path unless current_patient.nil? && !current_doctor.nil?
   end
 end
