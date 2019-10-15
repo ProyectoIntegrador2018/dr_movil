@@ -1,0 +1,57 @@
+<% if patient.persisted? %>
+  <h2>Editar información</h2>
+<% else %>
+  <h2>Crear un Paciente</h2>
+<% end %>
+
+<%= form_for(patient) do |f| %>
+  <%= render "devise/shared/error_messages", resource: patient %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birth_date %><br />
+    <%= f.date_field :birth_date, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.select(:sex, [["Masculino", "male"], ["Femenino", "female"]], {:prompt => 'Selecciona'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% unless patient.persisted? %>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <%= f.hidden_field :doctor_id, value: current_doctor.id %>
+
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Registrar" %>
+  </div>
+<% end %>
