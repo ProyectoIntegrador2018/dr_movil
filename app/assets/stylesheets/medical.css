@@ -41,3 +41,11 @@
   background-color: #5693FF;
   color: white;
 }
+.medical-row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.medical-update-form{
+  width: 100%;
+}
