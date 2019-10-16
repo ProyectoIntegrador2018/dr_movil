@@ -12,11 +12,20 @@
     <tr class="medical-table-title">
     <th>nombre</th>
     <th>frecuencia</th>
+    <th></th>
     </tr>
   <% @medicals.each do |m| %>
   <tr>
-    <td class="medical-row"><%=" #{m.medical_variable.name}"%></td>
-    <td class="medical-row"><%="#{m.freq}"%></td>
+    <td><%=" #{m.medical_variable.name}"%></td>
+    <td><%="#{m.freq}"%></td>
+    <td>
+      <%= form_tag(medical_path, method: :patch, class: "medical-row", autocomplete: "off") do %>
+      <%= hidden_field_tag :patient, @patient.id %>
+      <%= hidden_field_tag :medical, m.id %>
+        <div class="medical-update-form"><%= text_field_tag :freq, nil %></div>
+        <div class="medical-update-form"><%= submit_tag "cambiar", class: "btn btn-small btn-success" %></div>
+    <% end %>
+    </td>
   </tr>
   <% end %>
   </table>
