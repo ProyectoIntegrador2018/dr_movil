@@ -1,0 +1,22 @@
+<h2>Pacientes que actualmente comparte con otros médicos</h2>
+
+<div class="">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Doctor Autorizado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @viewable_patients.each do |vp| %>
+      <tr>
+        <td><%= vp.patient.first_name.titleize %></td>
+        <td><%= vp.patient.last_name.titleize %></td>
+        <td><%= "Dr. #{vp.doctor.first_name.titleize} #{vp.doctor.last_name.titleize}" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
