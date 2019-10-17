@@ -3,7 +3,7 @@
 <div class="w-100">
   <div class="d-flex w-100 justify-content-center">
     <div class="d-flex flex-row-reverse mb-2 w-75">
-      <%= button_to "Añadir Permiso", new_viewable_patient_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
+      <%= link_to "Añadir Permiso", new_viewable_patient_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
     </div>
   </div>
   <% if @viewable_patients.empty? %>

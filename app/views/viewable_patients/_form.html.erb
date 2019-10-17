@@ -1,0 +1,31 @@
+<% if viewable_patient.persisted? %>
+  <h2>Editar información</h2>
+<% else %>
+  <h2>Añadir un permiso</h2>
+<% end %>
+
+<div class="d-flex w-100 h-100 justify-content-center">
+  <div class="w-50 h-50">
+    <%= form_for(viewable_patient) do |f| %>
+      <div class="form-row mb-4">
+        <div class="form-group col-md-6">
+          <h4>Paciente</h4>
+          <%= f.select :patient_id, @patients, {}, {class: "form-control"} %>
+        </div>
+        <div class="form-group col-md-6">
+          <h4>Doctor</h4>
+          <%= f.select :doctor_id, @doctors, {}, {class: "form-control"} %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <p class="text-muted text-justify">Al crear el permiso, el doctor podrá administrar toda la información del paciente seleccionado.</p>
+          </div>
+        <div class="form-group col-md-6">
+          <%= f.submit "Registrar", class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
