@@ -1,0 +1,35 @@
+<h2>Pacientes que actualmente comparte con otros médicos</h2>
+
+<div class="w-100">
+  <div class="d-flex w-100 justify-content-center">
+    <div class="d-flex flex-row-reverse mb-2 w-75">
+      <%= link_to "Añadir Permiso", new_viewable_patient_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
+    </div>
+  </div>
+  <% if @viewable_patients.empty? %>
+    <h3 class="d-flex w-100 justify-content-center text-muted">No tienes pacientes compartidos con otros médicos</h3>
+  <% else %>
+  <div class="d-flex w-100 justify-content-center">
+    <table class="table table-striped w-75">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Doctor Autorizado</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @viewable_patients.each do |vp| %>
+          <tr>
+            <td><%= vp.patient.first_name.titleize %></td>
+            <td><%= vp.patient.last_name.titleize %></td>
+            <td><%= "Dr. #{vp.doctor.first_name.titleize} #{vp.doctor.last_name.titleize}" %></td>
+            <td><%= button_to "Eliminar", vp, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar el permiso? El doctor autorizado ya no podrá acceder a la información de este paciente' }, class: 'btn btn-danger' %></td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+</div>

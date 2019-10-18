@@ -19,4 +19,8 @@ class Doctor < ApplicationRecord
   def has_patient patient
     return viewable_patients.include?patient
   end
+
+  def shared_patients
+    ViewablePatient.all.map { |permit| permit if permit.patient.doctor == self }.compact
+  end
 end
