@@ -6,6 +6,8 @@ class Patient < ApplicationRecord
   has_many :medical_consultation
   has_many :doctors, through: :viewable_patients
   has_many :patient_medicals
+  has_many :encuesta_patient
+  has_many :encuesta, through: :encuesta_patient
   belongs_to :doctor
 
   # Include default devise modules. Others available are:
