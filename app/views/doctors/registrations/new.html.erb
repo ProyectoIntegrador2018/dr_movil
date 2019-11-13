@@ -1,49 +1,58 @@
-<h2>Sign up</h2>
-
+<div class="flex-container">
+  <div class="flex-column-container">
+        <div class="center-container">
+          <div class="registration_container">
+<h2 class="registration_sign_in">Sign up</h2>
+<hr>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+    <%= f.label :first_name, class:"registration_title"%><br />
+    <%= f.text_field :first_name, class:"registration_input", autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
+  <div class="field registration_space">
+    <%= f.label :last_name, class:"registration_title" %><br />
+    <%= f.text_field :last_name, class:"registration_input", autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :birth_date %><br />
+  <div class="flex-row-container">
+  <div class="field registration_space flex-column-mid registration_row_chose">
+    <%= f.label :birth_date, class:"registration_title" %><br />
     <%= f.date_field :birth_date, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :sex %><br />
+  <div class="field registration_space flex-column-mid registration_row_chose">
+    <%= f.label :sex, class:"registration_title" %><br />
     <%= f.select(:sex, [["Masculino", "male"], ["Femenino", "female"]], {:prompt => 'Selecciona'}) %>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="field registration_space">
+    <%= f.label :email, class:"registration_title" %><br />
+    <%= f.email_field :email, class:"registration_input", autofocus: true, autocomplete: "email" %>
+  </div>
+  <div class="registration_space">
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, class:"registration_title" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, class:"registration_input", autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, class:"registration_title" %><br />
+    <%= f.password_field :password_confirmation, class:"registration_input", autocomplete: "new-password" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Registrar" %>
+  </div>
+  <div class="actions registration_space registration_button">
+    <%= f.submit "Registrar", class:"session-button" %>
   </div>
 <% end %>
-
+</div>
+</div>
+</div>
+</div>
 <%= render "doctors/shared/links" %>

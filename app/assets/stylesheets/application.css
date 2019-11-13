@@ -25,6 +25,11 @@
    flex-direction: column;
    width: 100%;
  }
+ .flex-row-container{
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+ }
  .flex-column-container .center-container{
      width: 100%;
      display: flex;
@@ -33,6 +38,11 @@
      flex-direction: column;
  }
 
+.flex-column-mid{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
 
  p.alert{
    background-color: #E01111;
