@@ -1,0 +1,25 @@
+<div class="flex-container">
+  <div class="flex-column-container">
+    <div class="center-container">
+      <div class="registration_container">
+        <h2 class="registration_sign_in">Sign up</h2>
+        <hr>
+        <%= form_for(medical_variable) do |f| %>
+          <div class="field">
+            <%= f.label :name, class:"registration_title"%><br />
+            <%= f.text_field :name, class:"registration_input pl-2", autofocus: true %>
+          </div>
+
+          <div class="field registration_space">
+            <%= f.label :description, class:"registration_title" %><br />
+            <%= f.text_area :description, class:"registration_input pl-2 h-5", autofocus: false %>
+          </div>
+
+          <div class="actions registration_space registration_button">
+            <%= f.submit "Registrar", class:"session-button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

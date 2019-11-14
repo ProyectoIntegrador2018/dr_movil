@@ -1,0 +1,36 @@
+<h2>Variables Médicas</h2>
+
+<div class="w-100">
+  <div class="d-flex w-100 justify-content-center">
+    <div class="d-flex flex-row-reverse mb-2 w-75">
+      <%= link_to "Añadir Variable", new_medical_variable_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
+    </div>
+  </div>
+  <% if @medical_variables.empty? %>
+    <h3 class="d-flex w-100 justify-content-center text-muted">Aún no existen variables médicas</h3>
+  <% else %>
+  <div class="d-flex w-100 justify-content-center">
+    <table class="table table-striped w-75">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @medical_variables.each do |mv| %>
+          <tr>
+            <td class="text-center"><%= mv.name.titleize %></td>
+            <td class="text-center"><%= mv.description.capitalize %></td>
+            <td class="text-center">
+              <%= link_to 'Editar', edit_medical_variable_path(mv), :method => :get, class: 'btn btn-info w-25 d-inline-block' %>
+              <%= link_to "Eliminar", mv, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar la variable médica?' }, class: 'btn btn-danger w-25 d-inline-block' %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+</div>
