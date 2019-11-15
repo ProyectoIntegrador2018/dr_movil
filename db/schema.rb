@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 2019_11_07_015704) do
 
   create_table "encuesta_patients", force: :cascade do |t|
     t.bigint "encuesta_id"
-    t.bigint "patients_id"
+    t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["encuesta_id"], name: "index_encuesta_patients_on_encuesta_id"
-    t.index ["patients_id"], name: "index_encuesta_patients_on_patients_id"
+    t.index ["patient_id"], name: "index_encuesta_patients_on_patient_id"
   end
 
   create_table "logs", force: :cascade do |t|
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_015704) do
 
   add_foreign_key "encuesta", "doctors"
   add_foreign_key "encuesta_patients", "encuesta", column: "encuesta_id"
-  add_foreign_key "encuesta_patients", "patients", column: "patients_id"
+  add_foreign_key "encuesta_patients", "patients"
   add_foreign_key "logs", "patient_medicals"
   add_foreign_key "patient_medicals", "medical_variables"
   add_foreign_key "patient_medicals", "patients"

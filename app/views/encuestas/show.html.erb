@@ -16,14 +16,14 @@
       </div>
       <div class="col-6 grid-content">
         <!-- opciones de pacientes -->
-      <% if paciente.viewable_encuestas.where(:id => @encuesta.id).any? %>
+      <% if @encuesta.id.in?(paciente.viewable_encuestas.map(&:id)) %>
         <%= link_to "Quitar encuesta", encuesta_encuesta_patient_path(@encuesta.id, paciente.id),
         class: 'btn btn-sm btn-outline-secondary',
         data: {confirm: "Estas seguro que deseas quitar la encuesta al usuario #{paciente.first_name}?",
       }, method: :delete %>
       <% else %>
       <%= link_to "Agregar encuesta", encuesta_encuesta_patients_path(@encuesta.id, paciente.id),
-      class: 'btn btn-sm btn-outline-secondary'  %>
+      class: 'btn btn-sm btn-outline-secondary', method:  %>
       <% end %>
     </div>
   </div>
