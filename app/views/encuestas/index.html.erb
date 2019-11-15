@@ -1,8 +1,27 @@
+<%= render "topmenu" %>
 
-
-
-<% @encuestas.each do |encuesta| %>
-
-  <%= encuesta.name %> <br>
-
-<% end %>
+<div class="proyect-info">
+  <div class="grid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="highlight">Encuestas:</h1>
+      </div>
+    </div>
+    <% @encuestas.each do |encuesta| %>
+    <div class="row">
+      <div class="col-6 grid-content">
+        <h1><%= encuesta.name %></h1>
+      </div>
+      <div class="col-6 grid-content">
+        <!-- opciones de encuestas -->
+        <%= link_to "Eliminar encuesta", encuesta_path(encuesta.id),
+        class: 'btn btn-sm btn-outline-secondary',
+        data: {confirm: "Estas seguro que deseas eliminar esta encuesta?",
+      }, method: :delete %>
+      <%= link_to "Asignar encuesta", encuesta_path(encuesta.id),
+      class: 'btn btn-sm btn-outline-secondary'  %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>

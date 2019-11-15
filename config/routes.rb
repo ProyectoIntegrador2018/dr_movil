@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :patients
   resources :patient_medicals
   resources :viewable_patients
-  resources :encuestas
+  post 'encuestas/new', to: 'encuestas#create', as: 'create_encuesta'
+  resources :encuestas do
+    resources :encuesta_patients, only: [:destroy]
+  end
+  post 'encuestas/:encuesta_id/encuesta_patients/:id', to: 'encuesta_patients#create', as: 'encuesta_encuesta_patients'
   root to: "home#index"
 end
