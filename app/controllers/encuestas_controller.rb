@@ -52,4 +52,6 @@ class EncuestasController < ApplicationController
   def encuesta_params
     params.require(:encuesta).permit(:name, :url)
   end
+
+  
 end
