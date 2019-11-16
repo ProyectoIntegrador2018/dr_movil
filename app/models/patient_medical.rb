@@ -4,4 +4,5 @@
 class PatientMedical < ApplicationRecord
   belongs_to :patient
   belongs_to :medical_variable
+  has_many :logs
 end

@@ -5,7 +5,8 @@ class LogsController < ApplicationController
 
   def index
     @patient = current_patient.nil? ? Patient.find(params[:patient]) : current_patient
-    @logs = Log.all.map{|log| log if log.patient_medical.patient == @patient }
+    @logs = Log.all.map{|log| log if log.patient_medical.patient == @patient }.compact
+    @tracked_variables = @patient.registered_variables
   end
 
   def new
