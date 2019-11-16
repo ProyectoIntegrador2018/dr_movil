@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :patients
   resources :patient_medicals
   resources :viewable_patients
+  resources :medical_variables
   root to: "home#index"
 end

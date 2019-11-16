@@ -1,0 +1,33 @@
+<div class="flex-column-container">
+  <div class="medical-title">
+    <p>Variables medicas de paciente</p>
+    <h3><%="#{@patient.first_name} #{@patient.last_name}"%></h3>
+  </div>
+  <div class="d-flex w-100 justify-content-center">
+    <div class="d-flex flex-row-reverse mb-2 w-75">
+      <%= link_to "+ Añadir Variable", new_patient_medical_path(:patient => @patient), class: 'btn badge-pill btn-outline-primary mr-4' %>
+    </div>
+  </div>
+  <div class="medical-center-container">
+    <div class="medical-container">
+      <% if @medicals.empty? %>
+        <h3 class="d-flex w-100 justify-content-center text-muted">Este paciente no cuenta con variables médicas asignadas.</h3>
+      <% else %>
+        <table id="medical-var">
+          <tr class="medical-table-title">
+          <th>Variable</th>
+          <th>Frecuencia (# de registros por mes)</th>
+          <th>Acciones</th>
+          </tr>
+        <% @medicals.each do |m| %>
+        <tr>
+          <td><%="#{m.medical_variable.name.titleize}"%></td>
+          <td><%=m.freq.nil? ? "Sin Registrar" : "#{m.freq}"%></td>
+          <td><%= link_to "Editar", edit_patient_medical_path(m, :patient => m.patient.id), class: 'btn btn-info d-inline-block' %></td>
+        </tr>
+        <% end %>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,7 @@
     <% else %>
       <% @patients.each do |p| %>
         <div>
-          <p><%="#{p.first_name.titleize} #{p.last_name.titleize}"%> <%= link_to "Variables Medicas", medical_path(:patient => p)%></p>
+          <p><%="#{p.first_name.titleize} #{p.last_name.titleize}"%> <%= link_to "Variables Medicas", patient_medicals_path(:patient => p)%></p>
         </div>
       <% end %>
     <% end %>

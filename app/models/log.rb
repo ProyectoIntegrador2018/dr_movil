@@ -1,3 +1,3 @@
 class Log < ApplicationRecord
-  belongs_to :pacient_medical
+  belongs_to :patient_medical
 end
