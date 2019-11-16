@@ -1,0 +1,38 @@
+<h2>Tu registro de variables</h2>
+
+<div class="w-100">
+  <div class="d-flex w-100 justify-content-center">
+    <div class="d-flex flex-row-reverse mb-2 w-75">
+      <%= link_to "+ Añadir Variable", new_log_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
+    </div>
+  </div>
+  <% if @logs.empty? %>
+    <p class="text-muted text-justify">Aún no tienes registros de variables.</p>
+  <% else %>
+    <div class="d-flex w-100 justify-content-center">
+      <table class="table table-striped w-75">
+        <thead>
+          <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Valor Registrado</th>
+            <th scope="col">Fecha de Registro</th>
+            <th scope="col">Estado de Registro</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @logs.each do |log| %>
+            <tr>
+              <td><%= log.patient_medical.medical_variable.name.titleize %></td>
+              <td><%= log.value %></td>
+              <td><%= log.created_at.strftime("%d/%m/%Y")%></td>
+              <td>N/A</td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-primary" role="alert">
+      Estas son los valores que has estado registrando para darle continuidad a tus consultas con <%= @patient.doctor.sex == "male" ? "el Dr. #{@patient.doctor.last_name.titleize}" : "la Dra. #{@patient.doctor.last_name.titleize}" %>
+    </div>
+  <% end %>
+</div>
