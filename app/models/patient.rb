@@ -24,4 +24,8 @@ class Patient < ApplicationRecord
   def unregistered_variables
     return MedicalVariable.all - PatientMedical.where(patient: self).map{|pm| pm.medical_variable} 
   end
+
+  def variables_with_patient_medical
+    return self.patient_medicals.map {|pm| [pm.medical_variable.name.titleize, pm.id] }
+  end
 end

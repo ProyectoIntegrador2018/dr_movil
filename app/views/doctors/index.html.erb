@@ -4,15 +4,32 @@
   <h2>Directos:</h2>
   <div>
     <% if @patients.empty? %>
-      <h3>Aún no tiene pacientes</h3>
+      <h3 class="d-flex w-100 justify-content-center text-muted">Aún no tiene pacientes</h3>
     <% else %>
-      <% @patients.each do |p| %>
-        <div>
-          <p><%="#{p.first_name.titleize} #{p.last_name.titleize}"%> <%= link_to "Variables Medicas", patient_medicals_path(:patient => p)%></p>
-        </div>
-      <% end %>
+      <div class="d-flex w-100 justify-content-center">
+        <table class="table table-striped w-75">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @patients.each do |p| %>
+              <tr>
+                <td><%= p.first_name.titleize %></td>
+                <td><%= p.last_name.titleize %></td>
+                <td class="text-center">
+                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-info w-25 d-inline-block' %>
+                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-info w-25 d-inline-block' %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
     <% end %>
-    <%= link_to "Añadir Paciente", new_patient_path %>
   </div>
 </div>
 
