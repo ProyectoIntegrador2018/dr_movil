@@ -16,4 +16,12 @@ class Patient < ApplicationRecord
   def viewable_doctors
     ViewablePatient.where(patient: self).map{|vp| vp.doctor }
   end
+
+  def registered_variables
+    return PatientMedical.where(patient: self).map{|pm| pm.medical_variable} 
+  end
+
+  def unregistered_variables
+    return MedicalVariable.all - PatientMedical.where(patient: self).map{|pm| pm.medical_variable} 
+  end
 end

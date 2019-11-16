@@ -1,0 +1,49 @@
+<div class="flex-container">
+  <div class="flex-column-container">
+    <div class="center-container">
+      <div class="registration_container">
+        <h2 class="registration_sign_in">Variables Médicas</h2>
+        <hr>
+        <%= form_for(@patient_medical) do |f| %>
+          <% if @unregistered_variables.empty? %>
+            <h3 class="d-flex w-100 justify-content-center text-muted">Este paciente cuenta con registro de todas las variables médicas existentes.</h3>
+          <% else %>
+            <div class="form-row mb-4">
+              <div class="form-group col-md-6">
+                <h4>Sin asignar</h4>
+                <%= f.select :medical_variable_id, @unregistered_variables.map{|x| [x.name, x.id]}, {}, {class: "form-control"} %>
+              </div>
+              <div class="form-group col-md-6">
+                <h4>Asignadas</h4>
+                <% if @registered_variables.empty? %>
+                  <h4 class="d-flex w-100 justify-content-center text-muted">Este paciente no cuenta con registro de variables médicas.</h4>
+                <% else %>
+                  <ul class="list-group">
+                    <% @registered_variables.each do |rv| %>
+                      <li class="list-group-item"><%= rv.name.titleize %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+
+            <%= f.hidden_field :patient_id, value: @patient.id %>
+
+            <div class="form-row mb-4">
+              <div class="form-group col-md-6">
+                <h4>Frecuencia</h4>
+                <%= f.text_field :freq, class: 'registration_input pl-2 h-5' %>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <%= f.submit "Registrar", class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
