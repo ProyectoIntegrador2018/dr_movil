@@ -23,22 +23,37 @@
           </div>
         </div>
         <div class="col-4">
-            <div class="card">
-              <h5 class="card-header text-light bg-info">Resumen de Médicos</h5>
-              <div class="card-body">
-                <h5 class="card-title">Principal</h5>
-                <p class="card-title"><%= "#{@patient.doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{@patient.doctor.first_name.titleize} #{@patient.doctor.last_name.titleize}" %></p>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Externos (<%=@patient.viewable_doctors.count%>)</h5>
-                <% @patient.viewable_doctors.each do |doctor| %>
-                  <p><%= "#{doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{doctor.first_name.titleize} #{doctor.last_name.titleize}" %></p>
-                <% end %>
-                <% if current_patient.nil? %>
-                  <%= link_to "Ir a Permisos", viewable_patients_path, class: 'btn btn-info' if current_doctor == @patient.doctor %>
-                <% end %>
-              </div>
+          <div class="card mb-4">
+            <h5 class="card-header text-light bg-info">Resumen de Médicos</h5>
+            <div class="card-body">
+              <h5 class="card-title">Principal</h5>
+              <p class="card-title"><%= "#{@patient.doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{@patient.doctor.first_name.titleize} #{@patient.doctor.last_name.titleize}" %></p>
             </div>
+            <div class="card-body">
+              <h5 class="card-title">Externos (<%=@patient.viewable_doctors.count%>)</h5>
+              <% @patient.viewable_doctors.each do |doctor| %>
+                <p><%= "#{doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{doctor.first_name.titleize} #{doctor.last_name.titleize}" %></p>
+              <% end %>
+              <% if current_patient.nil? %>
+                <%= link_to "Ir a Permisos", viewable_patients_path, class: 'btn btn-info' if current_doctor == @patient.doctor %>
+              <% end %>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header text-light bg-info">
+              Variables Monitoreadas
+            </div>
+            <div class="card-body">
+              <% @patient.registered_variables.each do |tv| %>
+                <p><%= tv.name.titleize %> </li>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <% if current_patient.nil? %>
+                <%= link_to "Ir a Variables", patient_medicals_path(:patient => @patient), class: 'btn btn-info w-50' %>
+              <% end %>
+            </div>
+          </div>
         </div>
     </div>
   </div>
