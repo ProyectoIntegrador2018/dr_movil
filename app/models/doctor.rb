@@ -6,7 +6,8 @@ class Doctor < ApplicationRecord
   has_many :medical_consultation
   has_many :patients, through: :viewable_patients
   has_many :patients
-  
+  has_many :encuestas
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

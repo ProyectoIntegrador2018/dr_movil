@@ -1,0 +1,35 @@
+<div class="header-menu text-light">
+  <%= link_to "Atrás", encuestas_path, class: 'header-buttons' %>
+</div>
+<div class="user-info">
+  <h1>Editando permisos de la encuesta: <%= @encuesta.name %> </h1>
+</div>
+
+<div class="proyect-info">
+  <div class="grid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="highlight">Nombre del paciente:</h1>
+      </div>
+    </div>
+    <% @mypatients.each do |paciente| %>
+    <div class="row">
+      <div class="col-6 grid-content">
+        <h1><%= paciente.first_name %> <%= paciente.last_name %></h1>
+      </div>
+      <div class="col-6 grid-content">
+        <!-- opciones de pacientes -->
+      <% if @encuesta.id.in?(paciente.viewable_encuestas.map(&:id)) %>
+        <%= link_to "Quitar encuesta", encuesta_encuesta_patient_path(@encuesta.id, paciente.id),
+        class: 'btn btn-sm btn-outline-secondary',
+        data: {confirm: "Estas seguro que deseas quitar la encuesta al usuario #{paciente.first_name}?",
+      }, method: :delete %>
+      <% else %>
+      <%= link_to "Agregar encuesta", encuesta_encuesta_patients_path(@encuesta.id, paciente.id),
+      class: 'btn btn-sm btn-outline-secondary', method: :post %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>

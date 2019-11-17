@@ -6,6 +6,8 @@ class Patient < ApplicationRecord
   has_many :medical_consultation
   has_many :doctors, through: :viewable_patients
   has_many :patient_medicals
+  has_many :encuesta_patient
+  has_many :encuestas, through: :encuesta_patient
   belongs_to :doctor
 
   # Include default devise modules. Others available are:
@@ -27,5 +29,9 @@ class Patient < ApplicationRecord
 
   def variables_with_patient_medical
     return self.patient_medicals.map {|pm| [pm.medical_variable.name.titleize, pm.id] }
+  end
+  
+  def viewable_encuestas
+    EncuestaPatient.where(patient: self).map{|vp| vp.encuesta }
   end
 end
