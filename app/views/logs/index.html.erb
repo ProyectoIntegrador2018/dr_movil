@@ -1,59 +1,80 @@
 <div class="d-flex w-75 justify-content-center">
   <div class="d-flex w-75 justify-content-start">
-    <h2>Tu registro de variables</h2>
+    <h2>Registro de Variables</h2>
   </div>
 </div>
-<div class="d-inline-block w-75">
-  <% if current_doctor.nil? %>
-    <div class="d-flex w-100 justify-content-center">
-      <div class="d-flex flex-row-reverse mb-2 w-75">
-        <%= link_to "+ Registrar Variable", new_log_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
-      </div>
-    </div>
-  <% end %>
-  <% if @logs.empty? %>
+<div class="d-flex w-75 justify-content-center">
+  <div class="d-flex w-75 justify-content-start">
+    <h4 class="badge badge-info"><%="#{ @patient.first_name.titleize } #{ @patient.last_name.titleize }"%></h4>
+  </div>
+</div>
+<div class="d-flex w-75 justify-content-center">
+  <div class="d-flex w-75 justify-content-start">
+    <h4 class="badge badge-dark"><%="#{@patient.doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{ @patient.doctor.first_name.titleize } #{ @patient.doctor.last_name.titleize }"%></h4>
+  </div>
+</div>
+<div class="d-flex w-100 justify-content-center">
+  <div class="d-inline-block col-md-8">
     <% if current_doctor.nil? %>
-      <div class="d-flex w-75 justify-content-center">
+      <div class="d-flex w-100 justify-content-center">
         <div class="d-flex flex-row-reverse mb-2 w-75">
-          <h1 class="text-muted text-justify">Aún no tienes registros de variables.</h1>
-        </div>
-      </div>
-    <% else %>
-      <div class="d-flex w-75 justify-content-center">
-        <div class="d-flex flex-row-reverse mb-2 w-75">
-          <h1 class="text-muted text-justify">Este paciente aún no ha registrado variables.</h1>
+          <%= link_to "+ Registrar Variable", new_log_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
         </div>
       </div>
     <% end %>
-  <% else %>
-    <div class="d-flex w-100 justify-content-center">
-      <table class="table table-striped w-75 mr-4">
-        <thead>
-          <tr>
-            <th scope="col">Variable</th>
-            <th scope="col">Valor Registrado</th>
-            <th scope="col">Fecha de Registro</th>
-            <th scope="col">Estado de Registro</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @logs.each do |log| %>
+    <% if @logs.empty? %>
+      <% if current_doctor.nil? %>
+        <div class="d-flex w-75 justify-content-center">
+          <div class="d-flex flex-row-reverse mb-2 w-75">
+            <h1 class="text-muted text-justify">Aún no tienes registros de variables.</h1>
+          </div>
+        </div>
+      <% else %>
+        <div class="d-flex w-75 justify-content-center">
+          <div class="d-flex flex-row-reverse mb-2 w-75">
+            <h1 class="text-muted text-justify">Este paciente aún no ha registrado variables.</h1>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="d-flex w-100 justify-content-center">
+        <table class="table table-striped w-75 mr-4">
+          <thead>
             <tr>
-              <td><%= log.patient_medical.medical_variable.name.titleize %></td>
-              <td><%= log.value %></td>
-              <td><%= log.created_at.strftime("%d/%m/%Y")%></td>
-              <td>N/A</td>
+              <th scope="col">Variable</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Fecha de Registro</th>
+              <th scope="col">Estado de Registro</th>
             </tr>
-            <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-</div><ul class="d-inline-block list-group justify-content-center w-25">
-  <div class="alert alert-primary mb-2 w-75">
-    Variables Monitoreadas
+          </thead>
+          <tbody>
+              <% @logs.each do |log| %>
+              <tr>
+                <td><%= log.patient_medical.medical_variable.name.titleize %></td>
+                <td><%= log.value %></td>
+                <td><%= log.created_at.strftime("%d/%m/%Y")%></td>
+                <td><span class="badge badge-<%=badge_color(log.status)%>"><%= log.status.nil? ? "N/D" : adjust_status(log.status) %></span></td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div><div class="d-inline-block justify-content-center col-md-4 w-25">
+    <ul class="d-inline-block list-group justify-content-center w-100 mb-4">
+      <div class="alert alert-primary mb-2 w-75">
+        Variables Monitoreadas
+      </div>
+      <% @tracked_variables.each do |tv| %>
+        <li class="list-group-item w-75"><%= tv.name.titleize %> </li>
+      <% end %>
+    </ul>
+    <button class="btn btn-info w-75" onclick="print_page()">Imprimir</button>
   </div>
-  <% @tracked_variables.each do |tv| %>
-    <li class="list-group-item w-75"><%= tv.name.titleize %> </li>
-  <% end %>
-</ul>
+</div>
+
+<script>
+function print_page() {
+  window.print()
+}
+</script>
