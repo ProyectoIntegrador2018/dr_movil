@@ -8,11 +8,15 @@
     <% else %>
       <div class="d-flex w-100 justify-content-center">
         <table class="table table-striped w-75">
-          <thead>
+          <thead class="bg-info text-light">
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">
+                <div class="d-flex justify-content-center w-100">
+                    Acciones
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -21,8 +25,9 @@
                 <td><%= p.first_name.titleize %></td>
                 <td><%= p.last_name.titleize %></td>
                 <td class="text-center">
-                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-info w-25 d-inline-block' %>
-                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-info w-25 d-inline-block' %>
+                  <%= link_to "Perfil", patient_path(p), class: 'btn btn-primary w-25 d-inline-block' %>
+                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-success w-25 d-inline-block' %>
+                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-secondary w-25 d-inline-block' %>
                 </td>
               </tr>
               <% end %>
@@ -36,15 +41,41 @@
 <div>
   <h2>Adicionales:</h2>
   <div>
-     <% if @viewable_patients.empty? %>
-      <h3>Aún no tiene pacientes de otros Doctores</h3>
+    <% if @viewable_patients.empty? %>
+     <div class="d-flex w-100 justify-content-center">
+      <h3 class="text-muted">Aún no tiene pacientes de otros Doctores</h3>
+     </div>
     <% else %>
-      <% @viewable_patients.each do |p| %>
-        <div>
-          <p>Paciente: <%="#{p.first_name.titleize} #{p.last_name.titleize}"%></p>
-          <p>Doctor: <%="#{p.doctor.first_name.titleize} #{p.doctor.last_name.titleize}"%></p>
-        </div>
-      <% end %>
+      <div class="d-flex w-100 justify-content-center">
+        <table class="table table-striped w-75">
+          <thead class="bg-info text-light">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Compartido por</th>
+              <th scope="col">
+                <div class="d-flex justify-content-center w-100">
+                    Acciones
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @viewable_patients.each do |p| %>
+              <tr>
+                <td><%= p.first_name.titleize %></td>
+                <td><%= p.last_name.titleize %></td>
+                <td><%= "#{p.doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{p.doctor.first_name.titleize} #{p.doctor.last_name.titleize}" %></td>
+                <td class="text-center">
+                  <%= link_to "Perfil", patient_path(p), class: 'btn btn-primary w-25 d-inline-block' %>
+                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-success w-25 d-inline-block' %>
+                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-secondary w-25 d-inline-block' %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
     <% end %>
   </div>
 </div>

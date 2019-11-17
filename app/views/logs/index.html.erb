@@ -48,7 +48,7 @@
             </tr>
           </thead>
           <tbody>
-              <% @logs.each do |log| %>
+              <% @logs.reverse.each do |log| %>
               <tr>
                 <td><%= log.patient_medical.medical_variable.name.titleize %></td>
                 <td><%= log.value %></td>
