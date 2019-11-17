@@ -16,7 +16,9 @@ class LogsController < ApplicationController
 
   def create
     @patient = current_patient.nil? ? Patient.find(params[:patient]) : current_patient
-    @log = Log.new(log_params)
+    log_parameters = log_params
+    log_parameters[:status] = calculate_status
+    @log = Log.new(log_parameters)
     if @log.save
       flash[:success] = 'Variable registrada exitosamente'
       redirect_to logs_path
@@ -50,5 +52,14 @@ class LogsController < ApplicationController
 
   def check_patient
     redirect_to root_path unless (current_patient.nil? && current_doctor)
+  end
+
+  def calculate_status
+    log_date = PatientMedical.find(params[:log][:patient_medical_id]).updated_at.to_date
+    if (Date.today.year * 12 + Date.today.month) - (log_date.year * 12 + log_date.month) <= 1
+      return "on time"
+    else
+      return "delayed"
+    end
   end
 end
