@@ -29,6 +29,10 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     env_file: .env.prod
+    environment:
+      LC_ALL: C.UTF-8
+      RAILS_LOG_TO_STDOUT: "true"
+      DATABASE_URL: "postgres://postgres:P4Ssw0rD!@db:5432/dr_movil_prod"
     ports:
       - "3000:3000"
     volumes:

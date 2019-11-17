@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 2019_11_16_233448) do
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
 
+  create_table "encuesta", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.bigint "doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_encuesta_on_doctor_id"
+  end
+
+  create_table "encuesta_patients", force: :cascade do |t|
+    t.bigint "encuesta_id"
+    t.bigint "patient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["encuesta_id"], name: "index_encuesta_patients_on_encuesta_id"
+    t.index ["patient_id"], name: "index_encuesta_patients_on_patient_id"
+  end
+
   create_table "logs", force: :cascade do |t|
     t.float "value"
     t.datetime "created_at", null: false
@@ -82,6 +100,9 @@ ActiveRecord::Schema.define(version: 2019_11_16_233448) do
     t.index ["patient_id"], name: "index_viewable_patients_on_patient_id"
   end
 
+  add_foreign_key "encuesta", "doctors"
+  add_foreign_key "encuesta_patients", "encuesta", column: "encuesta_id"
+  add_foreign_key "encuesta_patients", "patients"
   add_foreign_key "logs", "patient_medicals"
   add_foreign_key "patient_medicals", "medical_variables"
   add_foreign_key "patient_medicals", "patients"

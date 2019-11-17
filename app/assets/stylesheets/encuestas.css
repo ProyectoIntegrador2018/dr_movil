@@ -1,0 +1,28 @@
+.header-menu{
+  border: none;
+  margin: 0px;
+  text-decoration: none;
+  font-size: 15px;
+  background-color: #343a40;
+  overflow: auto;
+  height: 5vh;
+}
+
+.header-buttons{
+  border: none;
+  float: left;
+  color: white;
+  margin: 0px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  height: 5vh;
+  background-color: #035efc;
+}
+
+.header-buttons:hover{
+  background-color: #0320fc;
+  color: white;
+  text-decoration: none;
+}
