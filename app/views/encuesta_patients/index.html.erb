@@ -1,0 +1,21 @@
+<div class="custom-container container col-11 scrollable">
+  <div class="row">
+    <div class="col-6 grid-header">
+      Nombre de encuesta
+    </div>
+    <div class="col-6 grid-header">
+      Link
+    </div>
+  </div>
+<% @encuestas.each do |encuesta| %>
+<div class="row">
+  <div class="col-6 grid-content">
+    <%= encuesta.name %>
+  </div>
+  <div class="col-6 grid-content">
+    <%= encuesta.url %>
+  </div>
+</div>
+
+<% end %>
+</div>
