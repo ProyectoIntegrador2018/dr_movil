@@ -1,19 +1,26 @@
-<div class="home-body">
-  <div class="home-inner">
-<div class="flex-container">
-  <div class="flex-column-container">
-    <div class="image-side">
-    <%= image_tag('medicine_5.jpg', class:"home-image") %>
-    </div>
-  </div>
-  <div class="flex-column-container">
-    <div class="text-side">
-      <div class="text-column">
-        <h2 class="home-text">Doctor Movil</h2>
-        <h5 class="home-text"> Administración a Pacientes</h5>
+<div class="d-flex bg-info w-100 justify-content-center align-items-center" style="height: 100vh;">
+  <div class="d-inline-block text-center bg-white w-50 rounded h-75">
+    <div class="d-inline-block w-100">
+      <div class="d-flex w-100 justify-content-center mt-4 mb-4">
+        <div class="d-flex w-100 justify-content-center">
+          <div class="d-flex justify-content-center w-100">
+            <div class="d-inline-block w-50 text-center">
+              <%= image_tag("logo.svg", class: 'd-inline-block w-100') %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="d-flex w-100 justify-content-center">
+        <div class="d-inline-block w-100 text-center">
+          <div class="d-inline-block w-100">
+            <%= link_to "Iniciar Sesión Doctores", new_doctor_session_path, class: 'btn btn-secondary h2 badge-pill btn-lg mt-5 mb-5'  %>
+          </div>
+          <div class="d-inline-block w-100">
+            <%= link_to "Iniciar Sesión Pacientes", new_patient_session_path, class: 'btn btn-info h2 badge-pill btn-lg'  %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
