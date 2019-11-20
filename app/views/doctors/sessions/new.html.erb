@@ -1,7 +1,8 @@
-<div class="flex-container">
+<div class="flex-container bg-info" style="height: 100vh;">
   <div class="flex-column-container">
     <div class="center-container">
       <div class="sessions-container">
+      <%= image_tag("logo.svg", class: 'd-inline-block w-50') %>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br/>
