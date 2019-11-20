@@ -1,0 +1,49 @@
+.doctor-container{
+  width: 90%;
+  padding-left: 5%;
+}
+.flex-container-doctor{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.flex-dock-row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+.flex-dock{
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+}
+
+.doct-btn{
+  display: flex;
+  width: 10rem;
+}
+
+@media screen and (min-width: 300px) {
+ /* We tell both sidebars to share a row */
+ .flex-dock-row{
+     flex-direction: column;
+     align-content: center;
+ }
+ .doct-btn{
+    margin-top: .5rem;
+ }
+}
+
+@media screen and (min-width: 800px) {
+  .flex-dock-row{
+    flex-direction: row;
+  }
+}

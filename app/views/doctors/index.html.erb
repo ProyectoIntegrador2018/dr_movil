@@ -1,19 +1,20 @@
-<h2>Pacientes</h2>
-
-<div>
+<div class="doctor-container">
+<div class="flex-column-container">
+  <h2>Pacientes</h2>
+  <%= link_to "Añadir Paciente", new_patient_path %>
   <h2>Directos:</h2>
-  <div>
+  <div class="flex-container-doctor">
     <% if @patients.empty? %>
       <h3 class="d-flex w-100 justify-content-center text-muted">Aún no tiene pacientes</h3>
     <% else %>
-      <div class="d-flex w-100 justify-content-center">
-        <table class="table table-striped w-75">
+      <div class="flex-dock">
+        <table class="table table-striped">
           <thead class="bg-info text-light">
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">
-                <div class="d-flex justify-content-center w-100">
+                <div class="d-flex justify-content-center ">
                     Acciones
                 </div>
               </th>
@@ -25,9 +26,13 @@
                 <td><%= p.first_name.titleize %></td>
                 <td><%= p.last_name.titleize %></td>
                 <td class="text-center">
-                  <%= link_to "Perfil", patient_path(p), class: 'btn btn-primary w-25 d-inline-block' %>
-                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-success w-25 d-inline-block' %>
-                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-secondary w-25 d-inline-block' %>
+                  <div class="flex-dock">
+                  <div class="flex-dock-row">
+                  <%= link_to "Perfil", patient_path(p), class: 'btn btn-primary doct-btn' %>
+                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-success doct-btn' %>
+                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-secondary  doct-btn' %>
+                  </div>
+                  </div>
                 </td>
               </tr>
               <% end %>
@@ -38,23 +43,23 @@
   </div>
 </div>
 
-<div>
-  <h2>Adicionales:</h2>
+<h2>Adicionales:</h2>
+<div class="flex-container-doctor">
   <div>
     <% if @viewable_patients.empty? %>
-     <div class="d-flex w-100 justify-content-center">
+     <div class="flex-dock">
       <h3 class="text-muted">Aún no tiene pacientes de otros Doctores</h3>
      </div>
     <% else %>
-      <div class="d-flex w-100 justify-content-center">
-        <table class="table table-striped w-75">
+      <div class="flex-dock">
+        <table class="table table-striped">
           <thead class="bg-info text-light">
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Compartido por</th>
               <th scope="col">
-                <div class="d-flex justify-content-center w-100">
+                <div class="d-flex justify-content-center">
                     Acciones
                 </div>
               </th>
@@ -67,9 +72,13 @@
                 <td><%= p.last_name.titleize %></td>
                 <td><%= "#{p.doctor.sex == 'male' ? 'Dr.' : 'Dra.'} #{p.doctor.first_name.titleize} #{p.doctor.last_name.titleize}" %></td>
                 <td class="text-center">
-                  <%= link_to "Perfil", patient_path(p), class: 'btn btn-primary w-25 d-inline-block' %>
-                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-success w-25 d-inline-block' %>
-                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-secondary w-25 d-inline-block' %>
+                  <div class="flex-dock">
+                  <div class="flex-dock-row">
+                  <%= link_to "Perfil", patient_path(p), class: 'btn btn-primary doct-btn' %>
+                  <%= link_to 'Variables Médicas', patient_medicals_path(:patient => p), class: 'btn btn-success doct-btn' %>
+                  <%= link_to "Registro de Variables", logs_path(:patient => p), class: 'btn btn-secondary  doct-btn' %>
+                  </div>
+                  </div>
                 </td>
               </tr>
               <% end %>
@@ -78,4 +87,5 @@
       </div>
     <% end %>
   </div>
+</div>
 </div>
