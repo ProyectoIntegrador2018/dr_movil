@@ -1,6 +1,11 @@
 # Encuesta Controller controlls or actions regarding Encuestas
 
 class EncuestaPatientsController < ApplicationController
+
+  def index
+    @encuestas = current_patient.encuestas
+  end
+
   def create
     @encuesta = EncuestaPatient.new
     @encuesta.patient_id = params[:id]
