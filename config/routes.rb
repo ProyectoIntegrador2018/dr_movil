@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :encuesta_patients, only: [:destroy]
   end
   post 'encuestas/:encuesta_id/encuesta_patients/:id', to: 'encuesta_patients#create', as: 'encuesta_encuesta_patients'
+  get 'encuestas-patient', to: 'encuesta_patients#index', as: 'encuesta_patients_index'
   root to: "home#index"
 end
