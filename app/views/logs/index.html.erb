@@ -18,24 +18,23 @@
     <% if @patient.variables_with_patient_medical.empty? %>
       <h3 class="d-flex w-100 justify-content-center text-muted">No tienes registros de variables pendientes.</h3>
     <% else %>
-    <% @patient.variables_with_patient_medical.each do |variable| %>
+    <% @patient.patient_medicals.each do |variable| %>
       <%= form_for(@log) do |f| %>
         <div class="form-row">
           <div class="form-group col-6">
             <h4>Variable a Registrar</h4>
-            <%= f.select :patient_medical_id, variable, {}, {class: "form-control"} %>
+            <%= variable.medical_variable.name %>
+            <%= f.hidden_field :patient_medical_id, value: variable.medical_variable.id %>
           </div>
-          <div class="form-group col-6">
+          <div class="form-group col-4">
             <h4>Valor a Registrar</h4>
             <%= f.text_field :value, class: "registration_input pl-2 h-5" %>
           </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col">
             <%= f.submit "Registrar", class: 'btn btn-primary' %>
           </div>
         </div>
+
       <% end %>
       <% end %>
     <% end %>
