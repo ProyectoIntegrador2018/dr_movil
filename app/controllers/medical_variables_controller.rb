@@ -22,10 +22,6 @@ class MedicalVariablesController < ApplicationController
     end
   end
 
-  def show
-    @medical_variable = MedicalVariable.find(params[:id])
-  end
-
   def edit
     @medical_variable = MedicalVariable.find(params[:id])
   end
@@ -37,7 +33,7 @@ class MedicalVariablesController < ApplicationController
     else
       flash.now[:error] = 'Hubo un error con el registro, verifica los campos del formulario'
     end
-    redirect_to @medical_variable
+    redirect_to medical_variables_path
   end
 
   private
