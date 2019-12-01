@@ -1,35 +1,48 @@
-<div class="header-menu text-light">
-  <%= link_to "Atrás", encuestas_path, class: 'header-buttons' %>
-</div>
-<div class="user-info">
-  <h1>Editando permisos de la encuesta: <%= @encuesta.name %> </h1>
-</div>
-
-<div class="proyect-info">
-  <div class="grid">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="highlight">Nombre del paciente:</h1>
-      </div>
-    </div>
-    <% @mypatients.each do |paciente| %>
-    <div class="row">
-      <div class="col-6 grid-content">
-        <h1><%= paciente.first_name %> <%= paciente.last_name %></h1>
-      </div>
-      <div class="col-6 grid-content">
-        <!-- opciones de pacientes -->
-      <% if @encuesta.id.in?(paciente.viewable_encuestas.map(&:id)) %>
-        <%= link_to "Quitar encuesta", encuesta_encuesta_patient_path(@encuesta.id, paciente.id),
-        class: 'btn btn-sm btn-outline-secondary',
-        data: {confirm: "Estas seguro que deseas quitar la encuesta al usuario #{paciente.first_name}?",
-      }, method: :delete %>
-      <% else %>
-      <%= link_to "Agregar encuesta", encuesta_encuesta_patients_path(@encuesta.id, paciente.id),
-      class: 'btn btn-sm btn-outline-secondary', method: :post %>
-      <% end %>
+<div class="d-flex w-100 justify-content-center">
+  <div class="d-flex w-75 justify-content-center">
+    <div class="d-flex w-75 justify-content-start">
+      <h2>Editando permisos de la encuesta: <%= @encuesta.name %> </h2>
     </div>
   </div>
-  <% end %>
 </div>
+
+<div class=" w-100 justify-content-center">
+  <div class="d-flex w-100 justify-content-center">
+    <% if @mypatients.empty? %>
+      <h3 class="d-flex w-100 justify-content-center text-muted">Aún no tiene encuestas</h3>
+    <% else %>
+      <div class="d-flex flex-dock justify-content-center w-75">
+        <table class="table table-striped w-75">
+          <thead class="bg-info text-light">
+            <tr>
+              <th scope="col">Nombre de Paciente</th>
+              <th scope="col">
+                <div class="d-flex justify-content-center ">
+                    Acciones
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @mypatients.each do |paciente| %>
+              <tr>
+                <td><%= paciente.first_name.titleize %> <%= paciente.last_name.titleize %></td>
+                <td class="text-center">
+                  <div class="flex-dock">
+                    <div class="flex-dock-row">
+                        <% if @encuesta.id.in?(paciente.viewable_encuestas.map(&:id)) %>
+                          <%= link_to "Eliminar Encuesta", encuesta_encuesta_patient_path(@encuesta.id, paciente.id), class: 'btn btn-danger', data: {confirm: "¿Estás seguro que deseas eliminar la encuesta al paciente #{paciente.first_name}?",}, method: :delete %>
+                        <% else %>
+                          <%= link_to "Asignar encuesta", encuesta_encuesta_patients_path(@encuesta.id, paciente.id), class: 'btn btn-primary', method: :post %>
+                        <% end %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
 </div>

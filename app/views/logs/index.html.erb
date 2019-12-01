@@ -2,7 +2,7 @@
   <div class="d-flex w-75 justify-content-start">
     <h2>Registro de Variables</h2>
   </div>
-  </div>
+</div>
 <div class="d-flex w-75 justify-content-center">
   <div class="d-flex w-75 justify-content-start">
     <h4 class="badge badge-info"><%="#{ @patient.first_name.titleize } #{ @patient.last_name.titleize }"%></h4>
@@ -14,39 +14,43 @@
   </div>
 </div>
 <% if current_doctor.nil?%>
-<div class=" w-75 justify-content-center">
-  <div class="form-row">
-    <div class="form-group col-6">
-      <h4>Variable a Registrar</h4>
-    </div>
-    <div class="form-group col-6">
-      <h4>Valor a Registrar</h4>
-    </div>
-  </div>
-
-    <% if @patient.variables_with_patient_medical.empty? %>
-      <h3 class="d-flex w-100 justify-content-center text-muted">No tienes registros de variables pendientes.</h3>
-    <% else %>
-    <% @patient.patient_medicals.each do |variable| %>
-      <%= form_for(@log) do |f| %>
-        <div class="form-row">
-          <div class="form-group col-6">
-            <%= variable.medical_variable.name %>
-            <%= f.hidden_field :patient_medical_id, value: variable.medical_variable.id %>
-          </div>
-          <div class="form-group col-4">
-            <%= f.text_field :value, class: "registration_input pl-2 h-5" %>
-          </div>
-          <div class="form-group col">
-            <%= f.submit "Registrar", class: 'btn btn-primary' %>
-          </div>
+  <div class="d-flex w-100 justify-content-center">
+    <div class="w-75">
+      <div class="d-flex form-row w-100">
+        <div class="form-group col-6">
+          <h4>Variable a Registrar</h4>
         </div>
+        <div class="form-group col-6">
+          <h4>Valor a Registrar</h4>
+        </div>
+      </div>
 
-      <% end %>
-      <% end %>
-    <% end %>
+      <div class="d-inline-block w-75 justify-content-center">
+        <% if @patient.variables_with_patient_medical.empty? %>
+          <h3 class="d-flex w-100 justify-content-center text-muted">No tienes registros de variables pendientes.</h3>
+        <% else %>
+          <% @patient.patient_medicals.each do |variable| %>
+            <%= form_for(@log) do |f| %>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <%= variable.medical_variable.name %>
+                  <%= f.hidden_field :patient_medical_id, value: variable.medical_variable.id %>
+                </div>
+                <div class="form-group col-4">
+                  <%= f.text_field :value, class: "registration_input pl-2 h-5" %>
+                </div>
+                <div class="form-group col">
+                  <%= f.submit "Registrar", class: 'btn btn-primary' %>
+                </div>
+              </div>
+
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <% end %>
+<% end %>
 
 <div class="d-flex w-100 justify-content-center">
   <div class="d-inline-block col-md-8">
