@@ -1,29 +1,37 @@
-<div class="custom-container container col-11 scrollable">
-<% if @encuestas.any? %>
-<div class="row">
-  <div class="col-6 grid-header">
-    Nombre de encuesta
-  </div>
-  <div class="col-6 grid-header">
-    Link
+<div class="d-flex w-100 justify-content-center">
+  <div class="d-flex w-75 justify-content-start">
+    <h2>Contestar Encuestas</h2>
   </div>
 </div>
-<% @encuestas.each do |encuesta| %>
-<div class="row">
-  <div class="col-6 grid-content">
-    <%= encuesta.name %>
-  </div>
-  <div class="col-6 grid-content">
-    <%= button_to "Contestar", encuesta.url, class: 'btn btn-primary', form: {target: '_blank'}
-%>
+<div class="d-flex w-100 justify-content-center">
+  <div class="d-flex w-75 justify-content-start">
+    <div class="custom-container container col-11 scrollable">
+      <% if @encuestas.any? %>
+        <table class="table table-striped">
+          <thead class="bg-info text-light">
+            <tr>
+              <th scope="col">Nombre de encuesta</th>
+              <th scope="col">Link</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @encuestas.each do |encuesta| %>
+              <tr>
+                <td><%= encuesta.name %></td>
+                <td><%= link_to "Contestar", encuesta.url, class: 'btn btn-primary',  target: :_blank %></td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="row">
+          <div class="col-6 grid-content">
+            Actualmente no tienes encuestas asignadas.
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-<% end %>
-<% else %>
-<div class="row">
-  <div class="col-6 grid-content">
-    Actualmente no tienes encuestas asignadas.
-  </div>
-</div>
-<% end %>
-</div>
+
+        
