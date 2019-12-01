@@ -1,27 +1,50 @@
-<%= render "topmenu" %>
-
-<div class="proyect-info">
-  <div class="grid">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="highlight">Encuestas:</h1>
-      </div>
-    </div>
-    <% @encuestas.each do |encuesta| %>
-    <div class="row">
-      <div class="col-6 grid-content">
-        <h1><%= encuesta.name %></h1>
-      </div>
-      <div class="col-6 grid-content">
-        <!-- opciones de encuestas -->
-        <%= link_to "Eliminar encuesta", encuesta_path(encuesta.id),
-        class: 'btn btn-sm btn-outline-secondary',
-        data: {confirm: "Estas seguro que deseas eliminar esta encuesta?",
-      }, method: :delete %>
-      <%= link_to "Asignar encuesta", encuesta_path(encuesta.id),
-      class: 'btn btn-sm btn-outline-secondary'  %>
+<div class="d-flex w-100 justify-content-center">
+  <div class="d-flex w-75 justify-content-center">
+    <div class="d-flex w-75 justify-content-start">
+      <h2>Encuestas</h2>
     </div>
   </div>
-  <% end %>
 </div>
+
+<div class=" w-100 justify-content-center">
+  <div class="w-100 justify-content-center">
+    <div class="d-flex flex-row-reverse mb-2 w-75">
+      <%= link_to "+ Añadir Encuesta", new_encuesta_path, class: 'btn badge-pill btn-outline-primary mr-4' %>
+    </div>
+  </div>
+  <div class="d-flex w-100 justify-content-center">
+    <% if @encuestas.empty? %>
+      <h3 class="d-flex w-100 justify-content-center text-muted">Aún no tiene encuestas</h3>
+    <% else %>
+      <div class="d-flex flex-dock justify-content-center w-75">
+        <table class="table table-striped w-75">
+          <thead class="bg-info text-light">
+            <tr>
+              <th scope="col">Nombre de Encuesta</th>
+              <th scope="col">
+                <div class="d-flex justify-content-center ">
+                    Acciones
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @encuestas.each do |encuesta| %>
+              <tr>
+                <td><%= encuesta.name %></td>
+                <td class="text-center">
+                  <div class="flex-dock">
+                    <div class="flex-dock-row">
+                      <%= link_to "Asignar encuesta", encuesta_path(encuesta.id), class: 'btn btn-primary'  %>
+                      <%= link_to "Eliminar encuesta", encuesta_path(encuesta.id), class: 'btn btn-danger', data: {confirm: "Estas seguro que deseas eliminar esta encuesta?",}, method: :delete %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
 </div>
